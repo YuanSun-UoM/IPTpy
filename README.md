@@ -1,6 +1,6 @@
 # IPT-py
 
-IPT-py is a Python-based tool designed to process input data for [CESM](https://www.cesm.ucar.edu/). It serves as a replacement for the NCL-based [Input Processing Tool (IPT) for MISICA](https://github.com/NCAR/IPT/tree/master), which is no longer maintained or updated by [NSF National Center for Atmospheric Research(NCAR)](https://ncar.ucar.edu/). 
+IPT-py is a Python-based tool designed to process input data for [CESM](https://www.cesm.ucar.edu/). It serves as a replacement for the NCL-based [Input Processing Tool (IPT) for MUSICA](https://github.com/NCAR/IPT/tree/master), which is no longer maintained or updated by [NSF National Center for Atmospheric Research (NCAR)](https://ncar.ucar.edu/). 
 
 IPT-py enables users to generate global anthropogenic emissions from CAMS or CEDS inventories for the FV dycore. Compared to the original, IPT-py offers greater flexibility by allowing users to generate specific species and specify data on a monthly basis. 
 
@@ -25,7 +25,7 @@ IPT-py enables users to generate global anthropogenic emissions from CAMS or CED
 | Version            | v5.3                                                         | v2021_04_21                                                  |
 | Spatial resolution | 0.1°x0.1°                                                    | 0.5°x0.5°                                                    |
 | Download method    | [Wget](https://permalink.aeris-data.fr/CAMS-GLOB-ANT)        | [Globus](https://www.globus.org/data-transfer)               |
-| Required scripts   | [regrid.py](./src/anthro_emission/fv/regrid.py), [rename.py]((./src/anthro_emission/fv/rename.py)) | [sum.py]((./src/anthro_emission/fv/sum.py)), [regrid.py]((./src/anthro_emission/fv/regrid.py)), [rename.py]((./src/anthro_emission/fv/rename.py)) |
+| Required scripts   | [regrid.py](./src/anthro_emission/fv/regrid.py), [rename.py](./src/anthro_emission/fv/rename.py) | [sum.py](./src/anthro_emission/fv/sum.py), [regrid.py](./src/anthro_emission/fv/regrid.py), [rename.py](./src/anthro_emission/fv/rename.py) |
 
 ## Script structure
 
