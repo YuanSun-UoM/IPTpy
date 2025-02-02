@@ -27,4 +27,5 @@ sphinx-build -b html docs docs/_build
 ## Management
 
 - [ReadTheDocs](https://app.readthedocs.org/), log in with the author's Github account.
+- It keeps updating with the GitHub commit. 
 
