@@ -1,6 +1,6 @@
 # IPT-py
 
-IPT-py is a Python-based tool designed to process input data for [CESM](https://www.cesm.ucar.edu/). It serves as a replacement for the NCL-based [Input Processing Tool (IPT) for MISICA](https://github.com/NCAR/IPT/tree/master), which is no longer maintained or updated. 
+IPT-py is a Python-based tool designed to process input data for [CESM](https://www.cesm.ucar.edu/). It serves as a replacement for the NCL-based [Input Processing Tool (IPT) for MISICA](https://github.com/NCAR/IPT/tree/master), which is no longer maintained or updated by [NSF National Center for Atmospheric Research(NCAR)](https://ncar.ucar.edu/). 
 
 IPT-py enables users to generate global anthropogenic emissions from CAMS or CEDS inventories for the FV dycore. Compared to the original, IPT-py offers greater flexibility by allowing users to generate specific species and specify data on a monthly basis. 
 
@@ -16,20 +16,20 @@ IPT-py enables users to generate global anthropogenic emissions from CAMS or CED
 
 - While IPT-py does not yet replicate all IPT functionalities, contributions are welcome to further enhance its capabilities.
 
-## Comparison of anthropogenic inventories
+## Comparison of global anthropogenic inventories
 
-| Feature          | [CAMSv5.3](https://permalink.aeris-data.fr/CAMS-GLOB-ANT)    | [CEDSv2021_04_21](https://data.pnnl.gov/dataset/CEDS-4-21-21) |
-| ---------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| Time step        | Monthly                                                      | Monthly                                                      |
-| Period           | 2000-01-01 to present                                        | 2000-01-16 to 2019-12-16                                     |
-| Version          | v5.3                                                         | v2021_04_21                                                  |
-| Resolution       | 0.1°x0.1°                                                    | 0.5°x0.5°                                                    |
-| Download method  | [Wget](https://permalink.aeris-data.fr/CAMS-GLOB-ANT)        | [Globus](https://www.globus.org/data-transfer)               |
-| Required scripts | [regrid.py](./src/anthro_emission/fv/regrid.py), [rename.py]((./src/anthro_emission/fv/rename.py)) | [sum.py]((./src/anthro_emission/fv/sum.py)), [regrid.py]((./src/anthro_emission/fv/regrid.py)), [rename.py]((./src/anthro_emission/fv/rename.py)) |
+| Feature            | [CAMSv5.3](https://permalink.aeris-data.fr/CAMS-GLOB-ANT)    | [CEDSv2021_04_21](https://data.pnnl.gov/dataset/CEDS-4-21-21) |
+| ------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| Time step          | Monthly                                                      | Monthly                                                      |
+| Period             | 2000-01-01 to present                                        | 2000-01-16 to 2019-12-16                                     |
+| Version            | v5.3                                                         | v2021_04_21                                                  |
+| Spatial resolution | 0.1°x0.1°                                                    | 0.5°x0.5°                                                    |
+| Download method    | [Wget](https://permalink.aeris-data.fr/CAMS-GLOB-ANT)        | [Globus](https://www.globus.org/data-transfer)               |
+| Required scripts   | [regrid.py](./src/anthro_emission/fv/regrid.py), [rename.py]((./src/anthro_emission/fv/rename.py)) | [sum.py]((./src/anthro_emission/fv/sum.py)), [regrid.py]((./src/anthro_emission/fv/regrid.py)), [rename.py]((./src/anthro_emission/fv/rename.py)) |
 
 ## Script structure
 
-![script_structure](./diagram/script_structure.png)
+<img src="./diagram/script_structure.png" alt="script_structure" width="50%">
 
 ## Trouble shooting tips
 - **Verify Default Input Data First:** Ensure that CESM job scripts run successfully using the default input data before incorporating user-customized input data. This helps isolate potential errors caused by modifications. For issues unrelated to input data, refer to [DiscussCESM Forums](https://bb.cgd.ucar.edu/cesm/) for support.
@@ -37,7 +37,7 @@ IPT-py enables users to generate global anthropogenic emissions from CAMS or CED
 
 ### Error cases
 
-**[error1](./trouble_shooting/error1/)**: imp_sol: step failed to converge @ (lchnk,vctrpos,nstep,dt,time) =     1281     431       1   11.25000       22.50000  
+**[error1](./troubleshooting/error1/)**: *imp_sol: step failed to converge @ (lchnk,vctrpos,nstep,dt,time) =     1281     431       1   11.25000       22.50000*  
 
 **notes**: if the simulation stopped due to the CAM failing to converge, it indicates that the inputdata has something wrong, for example, contains missing values (fill values) instead of actual data.
 
