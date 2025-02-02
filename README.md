@@ -4,7 +4,7 @@ IPTpy is a Python-based tool designed to process input data for [CESM](https://w
 
 IPTpy enables users to generate global anthropogenic emissions from CAMS or CEDS inventories for the FV dycore. Compared to the original, IPTpy offers greater flexibility by allowing users to generate specific species and specify data on a monthly basis. 
 
-# Comparison of IPT and IPT-py
+# Comparison of IPT and IPTpy
 
 | Feature                                    | [IPT](https://github.com/NCAR/IPT)                           | [IPTpy](https://github.com/YuanSun-UoM/IPTpy)                |
 | ------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
@@ -31,7 +31,7 @@ IPTpy enables users to generate global anthropogenic emissions from CAMS or CEDS
 
 <img src="./diagram/script_structure.png" alt="script_structure" width="50%">
 
-## Trouble shooting tips
+## Troubleshooting tips
 - **Verify Default Input Data First:** Ensure that CESM job scripts run successfully using the default input data before incorporating user-customized input data. This helps isolate potential errors caused by modifications. For issues unrelated to input data, refer to [DiscussCESM Forums](https://bb.cgd.ucar.edu/cesm/) for support.
 - **Understand Emission Input Interpolation**: Emission datasets such as CEDS provide data on the 16th of each month. If a simulation starts on **01 Jan 2015**, the input must include data from **16 Dec 2014** to enable interpolation between **16 Dec 2014 and 16 Jan 2015**. Similarly, if a simulation extends to the **end of 2015**, the input must include **16 Jan 2016** to interpolate emissions from **16 Dec 2015 to 16 Jan 2016**.
 
