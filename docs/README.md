@@ -1,13 +1,13 @@
 # Using Read the Docs to generate the webpage
 
-- https://app.readthedocs.org/, log in with the author's Github account.
-
 **Install Sphinx and Create Documentation**
 
 - /opt/homebrew/bin/python3.11 is the Python path in the author's PC
 
 ```
 /opt/homebrew/bin/python3.11 -m pip install sphinx
+/opt/homebrew/bin/python3.11 -m pip install sphinx-book-theme
+
 cd /Users/user/Desktop/YuanSun-UoM/IPTpy/docs/
 sphinx-quickstart
 
@@ -21,6 +21,10 @@ sphinx-quickstart
 **Build HTML Files Locally**
 
 ```
-sphinx-build -b html docs/source docs/build
+sphinx-build -b html docs docs/_build
 ```
+
+## Management
+
+- [ReadTheDocs](https://app.readthedocs.org/), log in with the author's Github account.
 

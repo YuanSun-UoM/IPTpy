@@ -29,7 +29,7 @@ IPTpy enables users to generate global anthropogenic emissions from CAMS or CEDS
 
 ## Script structure
 
-<img src="./diagram/script_structure.png" alt="script_structure" width="50%">
+<img src="./diagram/script_structure.png" alt="script_structure" width="35%">
 
 ## Troubleshooting tips
 - **Verify Default Input Data First:** Ensure that CESM job scripts run successfully using the default input data before incorporating user-customized input data. This helps isolate potential errors caused by modifications. For issues unrelated to input data, refer to [DiscussCESM Forums](https://bb.cgd.ucar.edu/cesm/) for support.
