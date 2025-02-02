@@ -1,12 +1,12 @@
-# IPT-py
+# IPTpy
 
-IPT-py is a Python-based tool designed to process input data for [CESM](https://www.cesm.ucar.edu/). It serves as a replacement for the NCL-based [Input Processing Tool (IPT) for MUSICA](https://github.com/NCAR/IPT/tree/master), which is no longer maintained or updated by [NSF National Center for Atmospheric Research (NCAR)](https://ncar.ucar.edu/). 
+IPTpy is a Python-based tool designed to process input data for [CESM](https://www.cesm.ucar.edu/). It serves as a replacement for the NCL-based [Input Processing Tool (IPT) for MUSICA](https://github.com/NCAR/IPT/tree/master), which is no longer maintained or updated by [NSF National Center for Atmospheric Research (NCAR)](https://ncar.ucar.edu/). 
 
-IPT-py enables users to generate global anthropogenic emissions from CAMS or CEDS inventories for the FV dycore. Compared to the original, IPT-py offers greater flexibility by allowing users to generate specific species and specify data on a monthly basis. 
+IPTpy enables users to generate global anthropogenic emissions from CAMS or CEDS inventories for the FV dycore. Compared to the original, IPTpy offers greater flexibility by allowing users to generate specific species and specify data on a monthly basis. 
 
 # Comparison of IPT and IPT-py
 
-| Feature                                    | [IPT](https://github.com/NCAR/IPT)                           | [IPT-py](https://github.com/YuanSun-UoM/IPT-py)              |
+| Feature                                    | [IPT](https://github.com/NCAR/IPT)                           | [IPTpy](https://github.com/YuanSun-UoM/IPTpy)                |
 | ------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | Function                                   | Processing anthropogenic and biomass emission for FV and SE dycores. | Processing anthropogenic emissions for FV dycores.           |
 | Supported global anthropogenic inventories | [CAMSv4.2](https://ads.atmosphere.copernicus.eu/datasets/cams-global-emission-inventories?tab=overview), [CEDSv2017_05_18](https://doi.org/10.5194/gmd-11-369-2018) | [CAMv5.3](https://permalink.aeris-data.fr/CAMS-GLOB-ANT), [CEDSv2021_04_21](https://data.pnnl.gov/dataset/CEDS-4-21-21) |
@@ -45,4 +45,5 @@ IPT-py enables users to generate global anthropogenic emissions from CAMS or CED
 
 ## Collaboration & Reach-out
 
-- If you’re interested in contributing to the development of a Python-based IPT for [CESM](https://github.com/ESCOMP/CESM)/[CAM-Chem](https://wiki.ucar.edu/display/camchem/Home)/[MUSICA](https://wiki.ucar.edu/display/MUSICA/MUSICA+Home), please reach out to [Yuan Sun](https://github.com/YuanSun-UoM) or submit an issue on the [Issues](https://github.com/YuanSun-UoM/IPT-py/issues) page for any ideas or suggestions. We will respond as soon as possible.
+- Contributors: [Yuan Sun](https://github.com/YuanSun-UoM), [Zhonghua Zheng](https://zhonghuazheng.com) (zhonghua.zheng@manchester.ac.uk)
+- If you’re interested in contributing to the development of a Python-based IPT for [CESM](https://github.com/ESCOMP/CESM)/[CAM-Chem](https://wiki.ucar.edu/display/camchem/Home)/[MUSICA](https://wiki.ucar.edu/display/MUSICA/MUSICA+Home), please reach out to [Yuan Sun](https://github.com/YuanSun-UoM) or submit an issue on the [Issues](https://github.com/YuanSun-UoM/IPTpy/issues) page for any ideas or suggestions. We will respond as soon as possible.
