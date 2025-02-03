@@ -215,7 +215,7 @@ class Rename(object):
         self._mw_list = [mw_mapping[var] for var in self._var_namelist]
         self._sf_list = [sf_mapping[var] for var in self._var_namelist]
 
-    def rename(self):
+    def apply_rename(self):
         """
         Rename the emissions files to match the model inputs.
         """

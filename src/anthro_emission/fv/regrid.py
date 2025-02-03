@@ -2,7 +2,6 @@ import os
 import numpy as np
 import pandas as pd
 import xarray as xr
-import esmpy as ESMF
 import xesmf as xe
 import datetime
 

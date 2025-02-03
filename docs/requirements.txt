@@ -1,3 +1,5 @@
+recommonmark
+myst_nb
 sphinx-book-theme
-sphinx-markdown-tables
 sphinx
+sphinx_design
