@@ -2,7 +2,7 @@
 
 IPTpy User Guide
 ================
-IPTpy is a Python-based tool designed to process input data for the `Community Earth System Model (CESM) <https://www.cesm.ucar.edu/>`_. It serves as a replacement for the `NCL-based Input Processing Tool (IPT) for MUSICA <https://github.com/NCAR/IPT/tree/master>`_, which is no longer maintained or updated by `NSF National Center for Atmospheric Research (NCAR) <https://ncar.ucar.edu/>`_. 
+IPTpy is a Python-based tool designed to process input data for the `Community Earth System Model (CESM) <https://www.cesm.ucar.edu/>`_. It serves as a partial replacement for the `NCL-based Input Processing Tool (IPT) for MUSICA <https://github.com/NCAR/IPT/tree/master>`_, which is no longer maintained or updated by `NSF National Center for Atmospheric Research (NCAR) <https://ncar.ucar.edu/>`_. 
 
 .. grid:: 1 1 2 2
     :margin: 4 4 0 0

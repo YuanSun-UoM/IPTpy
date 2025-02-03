@@ -1,6 +1,6 @@
 # IPTpy
 
-IPTpy is a Python-based tool designed to process input data for [CESM](https://www.cesm.ucar.edu/). It serves as a replacement for the NCL-based [Input Processing Tool (IPT) for MUSICA](https://github.com/NCAR/IPT/tree/master), which is no longer maintained or updated by the [NSF National Center for Atmospheric Research (NCAR)](https://ncar.ucar.edu/). 
+IPTpy is a Python-based tool designed to process input data for [CESM](https://www.cesm.ucar.edu/). It serves as a partial replacement for the NCL-based [Input Processing Tool (IPT) for MUSICA](https://github.com/NCAR/IPT/tree/master), which is no longer maintained or updated by the [NSF National Center for Atmospheric Research (NCAR)](https://ncar.ucar.edu/). 
 
 IPTpy enables users to generate global anthropogenic emissions from CAMS or CEDS inventories for the FV dycore. Compared to the original, IPTpy offers greater flexibility by allowing users to generate specific species and specify data on a monthly basis. 
 

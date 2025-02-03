@@ -21,7 +21,7 @@ CESM's default anthropogenic emission data is based on [CEDSv2017_05_18](https:/
 
 ### [CAMSv5.3](https://permalink.aeris-data.fr/CAMS-GLOB-ANT)
 
-- Sign up and log in with your ECCAD account at the https://eccad.sedoo.fr.
+- Sign up and log in with your [ECCAD account](https://eccad.sedoo.fr).
 - Go to the [CAMS-GLOB-ANT](https://eccad.sedoo.fr/#/metadata/479) webpage and click the **Go to Data** button on the top right corner.
 
 <img src="../_static/images/download/CAMSv5.3/webpage.png" alt="webpage" width="100%">
@@ -96,7 +96,7 @@ CESM's default anthropogenic emission data is based on [CEDSv2017_05_18](https:/
 ### [CEDSv2021_04_21](https://data.pnnl.gov/dataset/CEDS-4-21-21)
 
 - Sign up and log in with your Globus account at the https://www.globus.org/
-- Search **PNNL Data Hub** collection and click ** Open in File Management** bottom on the right. 
+- Search **PNNL Data Hub** collection and click **Open in File Management** bottom on the right. 
 
 <img src="../_static/images/download/CEDSv2021_04_21/pnnl.png" alt="pnnl" width="100%">
 <br><br>
@@ -107,5 +107,5 @@ CESM's default anthropogenic emission data is based on [CEDSv2017_05_18](https:/
 <br><br>
 
 - Keep the directory structure of downloaded data the same as the PNNL's.  Samely, if the data directory is inconsistent as expected, the code would meet error of failing to find the data files.  
-- Alternatively, users can utilize the [GLOBUS command-line interface (CLI)](https://docs.globus.org/cli/) for data downloads, providing a reliable and high-performance transfer method. We provides a [bash job script](ceds.sh) for reference. 
+- Alternatively, users can use the [GLOBUS command-line interface (CLI)](https://docs.globus.org/cli/) for data downloads, providing a reliable and high-performance transfer method. We provides a [bash job script](ceds.sh) for reference. 
 
