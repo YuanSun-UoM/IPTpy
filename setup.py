@@ -24,7 +24,7 @@ setup(
     long_description_content_type="text/x-rst",
     license="MIT",
     classifiers=classifiers,
-    install_requires=['numpy', 'pandas', 'xarray', 'datetime', 'xesmf', 'netCDF4', ],
+    install_requires=['numpy', 'pandas', 'xarray', 'datetime', 'esmpy', 'xesmf', 'netCDF4', ],
     packages=find_packages(where="src"),
     package_dir={"": "src"},
     )

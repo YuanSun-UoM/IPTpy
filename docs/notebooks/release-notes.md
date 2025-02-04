@@ -1,6 +1,8 @@
 # Release Notes
 
-v0.0.0
+| Date | Release | Notes         |
+| ---- | ------- | ------------- |
+|      | v0.0.0  | First release |
 
 
 

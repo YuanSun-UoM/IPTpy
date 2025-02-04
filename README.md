@@ -2,7 +2,7 @@
 
 IPTpy is a Python-based tool designed to process input data for [CESM](https://www.cesm.ucar.edu/). It serves as a partial replacement for the NCL-based [Input Processing Tool (IPT) for MUSICA](https://github.com/NCAR/IPT/tree/master), which is no longer maintained or updated by the [NSF National Center for Atmospheric Research (NCAR)](https://ncar.ucar.edu/). 
 
-IPTpy enables users to generate global anthropogenic emissions from CAMS or CEDS inventories for the FV dycore. Compared to the original, IPTpy offers greater flexibility by allowing users to generate specific species and specify data on a monthly basis. 
+IPTpy enables users to generate global anthropogenic emissions from [Copernicus Atmosphere Monitoring Service (CAMS)](https://atmosphere.copernicus.eu) or [Community Emissions Data System (CEDS)](https://www.pnnl.gov/projects/ceds) inventories for the finite volume dynamic core (FV dycore), covering the most recent historical data. Compared to the original, IPTpy offers greater flexibility by allowing users to generate specific species and specify data on a monthly basis. 
 
 # Comparison of IPT and IPTpy
 
@@ -14,7 +14,7 @@ IPTpy enables users to generate global anthropogenic emissions from CAMS or CEDS
 | Species                                    | Generates all species by default (no user selection).        | Allows users to select specific species as needed.           |
 | Period                                     | Selected by year(s).                                         | Selected by year(s) and months                               |
 
-- While IPT-py does not yet replicate all IPT functionalities, contributions are welcome to further enhance its capabilities.
+- While IPT-py does not yet replicate all IPT functionalities, contributions are welcome to enhance its capabilities further.
 
 ## Comparison of Global Anthropogenic Inventories
 
@@ -39,7 +39,7 @@ IPTpy enables users to generate global anthropogenic emissions from CAMS or CEDS
 
 **[error1](./troubleshooting/error1/)**: *imp_sol: step failed to converge @ (lchnk,vctrpos,nstep,dt,time) =     1281     431       1   11.25000       22.50000*  
 
-**notes**: if the simulation stopped due to the CAM failing to converge, it indicates that the inputdata has something wrong, for example, contains missing values (fill values) instead of actual data.
+**notes**: If the simulation stops due to CAM failing to converge, it likely indicates an issue with the input data, such as missing values (fill values) instead of actual data.
 
 
 
@@ -47,3 +47,4 @@ IPTpy enables users to generate global anthropogenic emissions from CAMS or CEDS
 
 - Contributors: [Yuan Sun](https://github.com/YuanSun-UoM), [Zhonghua Zheng](https://zhonghuazheng.com) (zhonghua.zheng@manchester.ac.uk)
 - If you’re interested in contributing to the development of a Python-based IPT for [CESM](https://github.com/ESCOMP/CESM)/[CAM-Chem](https://wiki.ucar.edu/display/camchem/Home)/[MUSICA](https://wiki.ucar.edu/display/MUSICA/MUSICA+Home), please reach out to [Yuan Sun](https://github.com/YuanSun-UoM) or submit an issue on the [Issues](https://github.com/YuanSun-UoM/IPTpy/issues) page for any ideas or suggestions. We will respond as soon as possible.
+- We also provide [testing scripts](./test) for validating IPTpy functions in CESM. 

@@ -6,7 +6,7 @@ import datetime
 
 class Sum(object):
     """
-    Sum class for summing up CEDS anthropogenic emissions (monthly) before regriding. CEDS data is downloaded through the PNNL DataHub portal in GLOBUS, endpoint UUID: f58973c0-08c1-43a7-9a0e-71f54ddc973c
+    Sum class for aggregating CEDS anthropogenic emissions (monthly) before regriding.
     
     Parameters
     ----------
@@ -20,25 +20,25 @@ class Sum(object):
         Starting year for processing.
     
     start_month : int
-        Starting month for processing.
+        Starting month for processing, default is 1.
 
     end_year : int
         Ending year for processing.
     
     end_month : int
-        Ending month for processing.
+        Ending month for processing, default is 12.
 
     source : str, optional
-        Data source, default is 'CEDS'.
+        Data source.
     
     version : str, optional
-        CEDS version, default is 'v2021-04-21'.
+        CEDS version, either is 'v5.3' for CAMS or 'v2021-04-21' for CEDS.
     
     timestep : str, optional
         Data timestep, default is 'monthly'.
     
     original_resolution : str, optional
-        Original resolution of the data, default is '0.5x0.5'.
+        Original resolution of the data, either '0.1x0.1' for CAMS or '0.5x0.5' for CEDS.
     
     target_resolution : str, optional
         Target resolution for output, default is '0.9x1.25'.
@@ -71,6 +71,9 @@ class Sum(object):
                  sourcedata_var_list: list = None,
                  model_var_list: list = None,
                  cdate: str = None):
+        """
+        This is the __init__ method docstring for Sum.
+        """
         # Full list of CEDS variables under the PNNL DataHub portal
         full_sourcedata_var_list = ['BC', 'CO', 'NH3', 'NOx', 'OC', 'SO2',
                               'VOC01-alcohols', 'VOC02-ethane', 'VOC03-propane', 'VOC04-butanes', 
@@ -127,8 +130,8 @@ class Sum(object):
             raise ValueError('version must be v2021-04-21 for CEDS')
         if start_year > end_year:
             raise ValueError('start_year must be less than or equal to end_year')
-        if start_year < 2000:
-            raise ValueError('start_year must be greater than or equal to 2000')
+        if start_year < 1750:
+            raise ValueError('start_year must be greater than or equal to 1750')
         if end_year > 2020: 
             raise ValueError('end_year must be less than or equal to 2020 for CEDS')
         if start_month is None:

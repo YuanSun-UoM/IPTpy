@@ -8,7 +8,7 @@ import shutil as sh
 
 class Rename(object):
     """
-    Rename class for renaming CAMS or CEDS emissions to match the model inputs.
+    Rename class for renaming gridded CAMS or CEDS emissions to match the model inputs.
 
     Parameters
     ----------
@@ -28,28 +28,28 @@ class Rename(object):
         Data source, either 'CAMS-GLOB-ANT' or 'CEDS'.
 
     version : str, optional        
-        Version of the data source. Default is 'v5.3' for CAMS-GLOB-ANT and 'v2021-04-21' for CEDS.
+        Version of the data source, either 'v5.3' for CAMS-GLOB-ANT or 'v2021-04-21' for CEDS.
 
     original_resolution : str, optional    
-        Original resolution of the data source. Default is '0.1x0.1' for CAMS-GLOB-ANT and '0.5x0.5' for CEDS.
+        Original resolution of the data source, either '0.1x0.1' for CAMS-GLOB-ANT or '0.5x0.5' for CEDS.
 
     cdate : str, optional    
-        Creation date for output files. Default is current date.
+        Creation date for output files, default is current date.
 
     timestep : str, optional
-        Data timestep. Default is 'monthly'.
+        Data timestep, default is 'monthly'.
 
     target_resolution : str, optional
-        Target resolution for output. Default is '0.9x1.25'.    
+        Target resolution for output, default is '0.9x1.25'.    
 
     target_lat : list, optional    
-        Target latitude values. 
+        Target latitude values. Uses default values if not specified. 
 
     target_lon : list, optional
-        Target longitude values.
+        Target longitude values. Uses default values if not specified.
 
     var_namelist : list, optional
-        List of variables to process. Default is all variables.
+        List of variables to process, default is all variables.
 
     model_var_list : list, optional            
         List of corresponding model variables. Automatically mapped if not provided.
@@ -73,7 +73,57 @@ class Rename(object):
                  cdate: str = None,
                  timestep: str = 'monthly',
                  target_resolution: str = '0.9x1.25',
-                 target_lat: list = [-90.      , -89.057594, -88.11518 , -87.172775, -86.23037 , -85.28796 ,
+                 target_lat: list = None,
+                 target_lon: list = None,
+                 var_namelist: list = None,
+                 model_var_list: list = None,
+                 mw_list: list = None,
+                 sf_list: list = None):
+        """
+        This is the __init__ method docstring for Rename.
+        """
+
+        self._source = source
+        self._target_lat = target_lat
+        self._target_lon = target_lon
+        if source not in ['CAMS-GLOB-ANT', 'CEDS']:
+            raise ValueError('source must be either CAMS-GLOB-ANT or CEDS')   
+        self._target_resolution = target_resolution
+        if target_resolution not in ['0.9x1.25']:
+            raise ValueError('target_resolution must be 0.9x1.25')
+        self._start_year = start_year
+        self._end_year = end_year
+        if start_year > end_year:
+            raise ValueError('start_year must be less than or equal to end_year')
+        self._input_path = input_path
+        self._output_path = output_path
+        if os.path.exists(output_path) == False:
+            os.makedirs(output_path)
+            print(f'Created directory {output_path}')
+        if os.path.exists(input_path) == False:
+            raise ValueError('input_path does not exist')  
+        self._timestep = timestep
+        if cdate is None:
+            self._cdate = datetime.datetime.now().strftime('%Y%m%d')
+        else:
+            self._cdate = cdate
+
+        if version is None:
+            if source == 'CAMS-GLOB-ANT':
+                version = 'v5.3'
+            elif source == 'CEDS':
+                version = 'v2021-04-21'
+              
+        self._version = version   
+        if original_resolution is None:
+            if self._source == 'CAMS-GLOB-ANT':
+                original_resolution = '0.1x0.1'
+            elif self._source == 'CEDS':
+                original_resolution = '0.5x0.5'
+        self._original_resolution = original_resolution
+
+        if target_lat is None:
+            self._target_lat = [-90.      , -89.057594, -88.11518 , -87.172775, -86.23037 , -85.28796 ,
                       -84.34555 , -83.403145, -82.46073 , -81.518326, -80.57591 , -79.63351 ,
                       -78.6911  , -77.74869 , -76.80628 , -75.86388 , -74.92146 , -73.97906 ,
                       -73.03665 , -72.09424 , -71.15183 , -70.20943 , -69.26701 , -68.32461 ,
@@ -104,65 +154,31 @@ class Rename(object):
                       68.32461 ,  69.26701 ,  70.20943 ,  71.15183 ,  72.09424 ,  73.03665 ,
                       73.97906 ,  74.92146 ,  75.86388 ,  76.80628 ,  77.74869 ,  78.6911  ,
                       79.63351 ,  80.57591 ,  81.518326,  82.46073 ,  83.403145,  84.34555 ,
-                      85.28796 ,  86.23037 ,  87.172775,  88.11518 ,  89.057594,  90.      ],
-                 target_lon: list = np.arange(0, 360, 1.25),
-                 var_namelist: list = None,
-                 model_var_list: list = None,
-                 mw_list: list = None,
-                 sf_list: list = None):
-        self._source = source
-        self._target_lat = target_lat
-        self._target_lon = target_lon
-        if source not in ['CAMS-GLOB-ANT', 'CEDS']:
-            raise ValueError('source must be either CAMS-GLOB-ANT or CEDS')   
-        self._target_resolution = target_resolution
-        if target_resolution not in ['0.9x1.25']:
-            raise ValueError('target_resolution must be 0.9x1.25')
-        self._start_year = start_year
-        self._end_year = end_year
-        if start_year > end_year:
-            raise ValueError('start_year must be less than or equal to end_year')
-        if start_year < 2000:
-            raise ValueError('start_year must be greater than or equal to 2000')
-        self._input_path = input_path
-        self._output_path = output_path
-        if os.path.exists(output_path) == False:
-            os.makedirs(output_path)
-            print(f'Created directory {output_path}')
-        if os.path.exists(input_path) == False:
-            raise ValueError('input_path does not exist')  
-        self._timestep = timestep
-        if cdate is None:
-            self._cdate = datetime.datetime.now().strftime('%Y%m%d')
+                      85.28796 ,  86.23037 ,  87.172775,  88.11518 ,  89.057594,  90.      ]
         else:
-            self._cdate = cdate
+            self._target_lat = target_lat
+        if target_lon is None:
+            self._target_lon = np.arange(0, 360, 1.25)
+        else:        
+            self._target_lon = target_lon  
 
-        if version is None:
-            if source == 'CAMS-GLOB-ANT':
-                version = 'v5.3'
-            elif source == 'CEDS':
-                version = 'v2021-04-21'
-        self._version = version   
-        
-        if original_resolution is None:
-            if self._source == 'CAMS-GLOB-ANT':
-                original_resolution = '0.1x0.1'
-            elif self._source == 'CEDS':
-                original_resolution = '0.5x0.5'
-        self._original_resolution = original_resolution     
-          
         if self._source == 'CAMS-GLOB-ANT':
+            first_year = 2000
+            last_year = datetime.datetime.now().year - 1
             if version not in ['v5.3']:
                raise ValueError('version must be v5.3 for CAMS-GLOB-ANT') 
             if original_resolution not in ['0.1x0.1']:
                raise ValueError('original_resolution must be 0.1x0.1 for CAMS-GLOB-ANT')
         elif self._source == 'CEDS':
+            first_year = 1750
+            last_year = 2020
             if version not in ['v2021-04-21']:
                raise ValueError('version must be v2021-04-21 for CEDS')
             if original_resolution not in ['0.5x0.5']:
                raise ValueError('original_resolution must be 0.5x0.5 for CEDS')
             if end_year > 2020:
                raise ValueError('end_year must be less than or equal to 2020 for CEDS')
+        
         if start_month is None:
             self._start_month = 1
         else:
@@ -173,7 +189,10 @@ class Rename(object):
             self._end_month = end_month    
         if self._end_year + self._end_month/12 <= self._start_year + self._start_month/12:
             raise ValueError('end_year and end_month must be greater than start_year and start_month')  
-            
+        if start_year < first_year:
+            raise ValueError('start_year must be greater than or equal to ' + str(first_year))
+        if end_year > last_year:
+               raise ValueError('end_year must be less than or equal to ' + str(last_year))      
         full_var_namelist = ['bc_a4', 'CO', 'NH3', 'NO', 'pom_a4', 'SO2', 
                                'C2H6', 'C3H8', 'C2H4', 'C3H6', 'C2H2', 'BIGENE', 
                                'BENZENE', 'TOLUENE', 'CH2O', 'CH3CHO', 'BIGALK', 'XYLENES', 
@@ -215,7 +234,7 @@ class Rename(object):
         self._mw_list = [mw_mapping[var] for var in self._var_namelist]
         self._sf_list = [sf_mapping[var] for var in self._var_namelist]
 
-    def apply_rename(self):
+    def rename(self):
         """
         Rename the emissions files to match the model inputs.
         """

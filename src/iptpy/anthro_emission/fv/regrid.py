@@ -2,6 +2,7 @@ import os
 import numpy as np
 import pandas as pd
 import xarray as xr
+import esmpy as ESMF
 import xesmf as xe
 import datetime
 
@@ -26,14 +27,14 @@ class Regrid(object):
     end_year : inr
         Ending year for processing.
 
-    source : str, optional
+    source : str.
         Data source.
 
     version : str, optional                                   
-        Data version.
+        Data version, either 'v5.3' for CAMS or 'v2021-04-21' for CEDS.
 
     original_resolution : str, optional
-        Original resolution of the input data.
+        Original resolution of the input data, either '0.1x0.1' for CAMS or '0.5x0.5' for CEDS.
 
     regridder_filename : str, optional
         Filename to save the regridder object.
@@ -54,10 +55,10 @@ class Regrid(object):
         Target resolution for output, default is '0.9x1.25'.
 
     target_lat : list, optional          
-        Target latitude grid.
+        Target latitude grid. Uses default values if not specified.
 
     target_lon : list, optional        
-        Target longitude grid.
+        Target longitude grid. Uses default values if not specified.
 
     var_name : str, optional    
         Variable name in output files, default is 'emiss_anthro'. 
@@ -66,7 +67,7 @@ class Regrid(object):
         List of CAMS or CEDS variables to process, default is all variables.
 
     model_var_list : list, optional    
-        List of corresponding model variables. Automatically mapped if not provided.s
+        List of corresponding model variables. Automatically mapped if not provided.
     """
     def __init__(self,
                  input_path: str,
@@ -84,7 +85,82 @@ class Regrid(object):
                  cdate: str = None,
                  timestep: str = 'monthly',
                  target_resolution: str = '0.9x1.25',
-                 target_lat: list = [-90.      , -89.057594, -88.11518 , -87.172775, -86.23037 , -85.28796 ,
+                 target_lat: list = None,
+                 target_lon: list = None,
+                 var_name: str = 'emiss_anthro',
+                 sourcedata_var_list: list = None,
+                 model_var_list: list = None):
+        """
+        This is the __init__ method docstring for Regrid.
+        """
+        self._source = source
+        if source not in ['CAMS-GLOB-ANT', 'CEDS']:
+            raise ValueError('source must be either CAMS-GLOB-ANT or CEDS')   
+        self._target_resolution = target_resolution
+        if target_resolution not in ['0.9x1.25']:
+            raise ValueError('target_resolution must be 0.9x1.25')
+        self._start_year = start_year
+        self._end_year = end_year
+        if start_year > end_year:
+            raise ValueError('start_year must be less than or equal to end_year')
+        self._input_path = input_path
+        self._output_path = output_path
+        if os.path.exists(output_path) == False:
+            os.makedirs(output_path)
+            print(f'Created directory {output_path}')
+        if os.path.exists(input_path) == False:
+            raise ValueError('input_path does not exist')  
+        self._timestep = timestep
+        if cdate is None:
+            self._cdate = datetime.datetime.now().strftime('%Y%m%d')
+        else:
+            self._cdate = cdate
+        
+        if version is None:
+            if source == 'CAMS-GLOB-ANT':
+                version = 'v5.3'
+            else:
+                version = 'v2021-04-21'
+        self._version = version    
+        if original_resolution is None:
+            if source == 'CAMS-GLOB-ANT':
+                original_resolution = '0.1x0.1'
+            else:
+                original_resolution = '0.5x0.5'
+        if source == 'CAMS-GLOB-ANT':
+            first_year = 2000
+            last_year = datetime.datetime.now().year - 1
+            if version not in ['v5.3']:
+               raise ValueError('version must be v5.3 for CAMS-GLOB-ANT') 
+            if original_resolution not in ['0.1x0.1']:
+               raise ValueError('original_resolution must be 0.1x0.1 for CAMS-GLOB-ANT')
+        elif source == 'CEDS':
+            first_year = 1750
+            last_year = 2020
+            if version not in ['v2021-04-21']:
+               raise ValueError('version must be v2021-04-21 for CEDS')
+            if original_resolution not in ['0.5x0.5']:
+               raise ValueError('original_resolution must be 0.5x0.5 for CEDS')
+        if start_year < first_year:
+            raise ValueError('start_year must be greater than or equal to ' + str(first_year))
+        if end_year > last_year:
+            raise ValueError('end_year must be less than or equal to ' + str(last_year))
+        if start_month is None:
+            self._start_month = 1
+        else:
+            self._start_month = start_month    
+        if end_month is None:
+            self._end_month = 12    
+        else:
+            self._end_month = end_month    
+        if self._end_year + self._end_month/12 <= self._start_year + self._start_month/12:
+            raise ValueError('end_year and end_month must be greater than start_year and start_month')  
+        self._original_resolution = original_resolution     
+        grid_spacing = float(self._original_resolution.split('x')[0])
+        self._original_lat = np.arange(-90, 90, grid_spacing).tolist()
+        self._original_lon = np.arange(0, 360, grid_spacing).tolist()
+        if target_lat is None:
+            self._target_lat = [-90.      , -89.057594, -88.11518 , -87.172775, -86.23037 , -85.28796 ,
                       -84.34555 , -83.403145, -82.46073 , -81.518326, -80.57591 , -79.63351 ,
                       -78.6911  , -77.74869 , -76.80628 , -75.86388 , -74.92146 , -73.97906 ,
                       -73.03665 , -72.09424 , -71.15183 , -70.20943 , -69.26701 , -68.32461 ,
@@ -115,75 +191,13 @@ class Regrid(object):
                       68.32461 ,  69.26701 ,  70.20943 ,  71.15183 ,  72.09424 ,  73.03665 ,
                       73.97906 ,  74.92146 ,  75.86388 ,  76.80628 ,  77.74869 ,  78.6911  ,
                       79.63351 ,  80.57591 ,  81.518326,  82.46073 ,  83.403145,  84.34555 ,
-                      85.28796 ,  86.23037 ,  87.172775,  88.11518 ,  89.057594,  90.      ],
-                 target_lon: list = np.arange(0, 360, 1.25),
-                 var_name: str = 'emiss_anthro',
-                 sourcedata_var_list: list = None,
-                 model_var_list: list = None):
-        self._source = source
-        if source not in ['CAMS-GLOB-ANT', 'CEDS']:
-            raise ValueError('source must be either CAMS-GLOB-ANT or CEDS')   
-        self._target_resolution = target_resolution
-        if target_resolution not in ['0.9x1.25']:
-            raise ValueError('target_resolution must be 0.9x1.25')
-        self._start_year = start_year
-        self._end_year = end_year
-        if start_year > end_year:
-            raise ValueError('start_year must be less than or equal to end_year')
-        if start_year < 2000:
-            raise ValueError('start_year must be greater than or equal to 2000')
-        self._input_path = input_path
-        self._output_path = output_path
-        if os.path.exists(output_path) == False:
-            os.makedirs(output_path)
-            print(f'Created directory {output_path}')
-        if os.path.exists(input_path) == False:
-            raise ValueError('input_path does not exist')  
-        self._timestep = timestep
-        if cdate is None:
-            self._cdate = datetime.datetime.now().strftime('%Y%m%d')
+                      85.28796 ,  86.23037 ,  87.172775,  88.11518 ,  89.057594,  90.      ]
         else:
-            self._cdate = cdate
-        
-        if version is None:
-            if source == 'CAMS-GLOB-ANT':
-                version = 'v5.3'
-            else:
-                version = 'v2021-04-21'
-        self._version = version    
-        if original_resolution is None:
-            if source == 'CAMS-GLOB-ANT':
-                original_resolution = '0.1x0.1'
-            else:
-                original_resolution = '0.5x0.5'
-        if source == 'CAMS-GLOB-ANT':
-            if version not in ['v5.3']:
-               raise ValueError('version must be v5.3 for CAMS-GLOB-ANT') 
-            if original_resolution not in ['0.1x0.1']:
-               raise ValueError('original_resolution must be 0.1x0.1 for CAMS-GLOB-ANT')
-        elif source == 'CEDS':
-            if version not in ['v2021-04-21']:
-               raise ValueError('version must be v2021-04-21 for CEDS')
-            if original_resolution not in ['0.5x0.5']:
-               raise ValueError('original_resolution must be 0.5x0.5 for CEDS')
-            if end_year > 2020:
-               raise ValueError('end_year must be less than or equal to 2020 for CEDS')
-        if start_month is None:
-            self._start_month = 1
-        else:
-            self._start_month = start_month    
-        if end_month is None:
-            self._end_month = 12    
-        else:
-            self._end_month = end_month    
-        if self._end_year + self._end_month/12 <= self._start_year + self._start_month/12:
-            raise ValueError('end_year and end_month must be greater than start_year and start_month')  
-        self._original_resolution = original_resolution     
-        grid_spacing = float(self._original_resolution.split('x')[0])
-        self._original_lat = np.arange(-90, 90, grid_spacing).tolist()
-        self._original_lon = np.arange(0, 360, grid_spacing).tolist()
-        self._target_lat = target_lat
-        self._target_lon = target_lon
+            self._target_lat = target_lat
+        if target_lon is None:
+            self._target_lon = np.arange(0, 360, 1.25)
+        else:        
+            self._target_lon = target_lon
         self._var_name = var_name
         self._regridder_filename = regridder_filename
         if os.path.exists(self._regridder_filename) == False:

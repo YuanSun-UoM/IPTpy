@@ -4,7 +4,7 @@
 
 Usage Examples
 ==============
-We provides two examples using `Jupyter Notebook <https://jupyter.org>`_ for using IPTpy to process CAMSv5.3 and CEDSv2021_04_21 data.
+We provides two examples for using IPTpy to process CAMSv5.3 and CEDSv2021_04_21 data. Users can taste the basic functions of IPTpy through `Jupyter Notebook <https://jupyter.org>`_.
 
 .. grid:: 1 1 2 2
     :gutter: 2
@@ -12,7 +12,7 @@ We provides two examples using `Jupyter Notebook <https://jupyter.org>`_ for usi
     .. grid-item-card::  CAMSv5.3
         :class-title: custom-title
         :class-body: custom-body
-        :link: notebooks/examples/CAMSv5.3
+        :link: notebooks/examples/CAMSv5.3.html
 
         Use rename and regrid fuctions
         
@@ -23,7 +23,7 @@ We provides two examples using `Jupyter Notebook <https://jupyter.org>`_ for usi
     .. grid-item-card::  CEDSv2021_04_21
         :class-title: custom-title
         :class-body: custom-body
-        :link: notebooks/examples/CEDSv2021_04_21
+        :link: notebooks/examples/CEDSv2021_04_21.html
 
         Use sum, rename and regrid fuctions
 
@@ -31,11 +31,19 @@ We provides two examples using `Jupyter Notebook <https://jupyter.org>`_ for usi
             :height: 30px
             :width: 30px
 
+.. raw:: html
+
+    <div style="margin-top: 20px;"></div>
+
+.. image:: ../diagram/script_structure.png
+    :align: center
+    :width: 25%
+
 .. toctree::
-   :maxdepth: 1
+   :maxdepth: 2
    :hidden:
 
-   notebooks/examples/CAMSv5.3
-   notebooks/examples/CEDSv2021_04_21
+   CAMSv5.3 <notebooks/examples/CAMSv5.3.md>
+   CEDSv2021_04_21 <notebooks/examples/CEDSv2021_04_21.md>
    
 

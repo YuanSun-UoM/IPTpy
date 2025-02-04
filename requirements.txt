@@ -2,5 +2,6 @@ numpy
 pandas
 xarray
 netcdf4
+esmpy
 xesmf
 datetime

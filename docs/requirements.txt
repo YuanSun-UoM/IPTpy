@@ -1,5 +1,5 @@
 recommonmark
-myst_nb
+myst-nb
 sphinx-book-theme
-sphinx
 sphinx_design
+sphinx

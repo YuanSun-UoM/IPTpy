@@ -4,7 +4,7 @@
 
 Development
 ===========
-You'll learn about how IPTpy was developed, and how to contribute to it.
+Learn about how IPTpy was developed, and how to contribute to it.
 
 .. grid:: 1 1 2 2
     :gutter: 2
@@ -12,9 +12,9 @@ You'll learn about how IPTpy was developed, and how to contribute to it.
     .. grid-item-card:: Release Notes
         :class-title: custom-title
         :class-body: custom-body
-        :link: notebooks/release-notes
+        :link: notebooks/release-notes.html
 
-        Learn about the latest features and changes in IPTpy
+        Learn about the latest features in IPTpy
         
         .. image:: _static/images/icons/handshake.svg
             :height: 30px
@@ -23,7 +23,7 @@ You'll learn about how IPTpy was developed, and how to contribute to it.
     .. grid-item-card::  Make A Contribution
         :class-title: custom-title
         :class-body: custom-body
-        :link: notebooks/contrib
+        :link: notebooks/contrib.html
 
         Contribute to the development of IPTpy
 
@@ -35,6 +35,7 @@ You'll learn about how IPTpy was developed, and how to contribute to it.
    :maxdepth: 2
    :hidden:
 
-   notebooks/release-notes.md
-   notebooks/contrib.md
+   Release Notes <notebooks/release-notes.md>
+   Make A Contribution <notebooks/contrib.md>
+   Test <notebooks/test.md>
 

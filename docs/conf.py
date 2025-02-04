@@ -32,9 +32,9 @@ extensions = [
     'sphinx.ext.autodoc',
     'sphinx.ext.autosummary',
     'sphinx.ext.mathjax',
-    #'sphinx-markdown-tables',
+    #'sphinx_markdown_tables', # not 'sphinx-markdown-tables',
     'sphinx_design', # for grid layout
-    #'nbsphinx',
+    #'nbsphinx', for ipynb
     #'nbconvert' # for ipynb
 
 ]
@@ -93,10 +93,11 @@ source_suffix = ['.rst', '.md']
 source_suffix = {
     '.md': 'markdown',
     '.rst': 'restructuredtext',
-    '.ipynb': 'myst-nb',
-    '.myst': 'myst-nb',
+    #'.ipynb': 'myst-nb',
+    #'.myst': 'myst-nb',
 }
 '''
+
 # jupyter_execute_notebooks = "off"
 nb_execution_mode = "off"
 

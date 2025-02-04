@@ -1,50 +1,49 @@
-Contributing to IPTpy
+Make A Contribution
 ==========================
 
 Introduction
 --------------------------
 
-Thank you for considering contributing to ``IPTpy``! There are many ways to contribute to this project, including reporting bugs, requesting additional or new functionality, improving our documentation, or contributing your code and we appreciate all of them. If you have any questions, please feel free to reach out to us on [GitHub Discussions](https://github.com/YuanSun-UoM/IPTpy/discussions). 
+Thank you for your interest in contributing to IPTpy. There are many ways to get involved, including reporting bugs, suggesting new features, improving documentation, or contributing code. We appreciate all your contributions. If you have any questions, please feel free to reach out via [GitHub Discussions](https://github.com/YuanSun-UoM/IPTpy/discussions). 
 
-## Where to start
+## Where to Start
 
-Look through our open issues and see if there is anything you would like to take on! We recommend working with core developers to implement new functionality. We can help you get started and make sure your code is consistent with the rest of
-the project. We do not officially "assign" issues to contributors, but if you are interested in working on an issue, please comment on the issue to let us know you are working on it. This will help us avoid duplicate work.
+Browse our open issues to find one that interests you. We recommend collaborating with use when implementing new functionality, as we can help you get started and ensure your code aligns with the project structure. While we do not officially "assign" issues, please comment on an issue if you plan to work on it to help prevent duplicate efforts.
 
-The code for ``IPTpy`` is hosted on GitHub. If you do not have one, you will need to create a [free GitHub account]( <https://github.com/signup/free>). The [GitHub Quickstart Guide](https://docs.github.com/en/get-started/quickstart) is a great place to get started with Git and GitHub.
+IPTpy is hosted on GitHub. If you do not have an account, you will need to create a [free GitHub account]( <https://github.com/signup/free>). The [GitHub Quickstart Guide](https://docs.github.com/en/get-started/quickstart) is an excellent resource for getting familiar with [Git](https://docs.github.com/en/get-started/using-git/about-git) and GitHub.
 
-## Reporting bugs
+## Reporting Bugs
 
-Is something not working as expected? We would love to hear about it! Please report any bugs you find by opening an [issue](https://github.com/YuanSun-UoM/IPTpy/issues) on GitHub. 
+Encounting an issue? We would love to hear about it! Please report any bugs by opening an [issue](https://github.com/YuanSun-UoM/IPTpy/issues) on GitHub. 
 
-When reporting a bug, please include as much information as possible. This will help us reproduce the bug and fix it efficiently. 
+When reporting a bug, provide as much detail as possible, including steps to reproduce the issue, expected behavior, and any relevant error messages. This will help us diagnose and resolve the problem more efficiently.
 
 ## Improving Documentation
 
-We are always looking for ways to improve our documentation. If you find something that is unclear or confusing, please let us know by opening an issue. 
+We are always looking to enhance our documentation. If you come across anything unclear or confusing, please let us know by opening an [issue](https://github.com/YuanSun-UoM/IPTpy/issues) on GitHub. Your feedback helps us improve.
 
-## Development workflow overview
+## Development Workflow Overview
 
-This is a brief overview of the development workflow we use for IPTpy. A more detailed description of each step is provided in the following sections.
+Here is a brief overview of the development workflow for IPTpy. 
 
-**Get set up to develop on your local machine**
+**Set up Your Development Environment**
 
-- Fork and clone the repository
-- Create a development environment
-- Create a branch for your changes
-- Install pre-commit hooks
+- Fork and clone the repository.
+- Create a development environment.
+- Create a new branch for your changes.
+- Install pre-commit hooks.
 
-**Make your changes**
+**Implement Your Changes**
 
-- Understanding the codebase
-- Make a difference
+- Familiarize yourself with the codebase.
+- Make and test your modifications.
 
 **Contribute your code**
 
-- Push your changes to your fork
+- Push your changes to your fork.
 
-- Open a pull request
+- Open a pull request.
 
-- Address feedback
+- Address any feedback from reviewers.
 
 - Wait for your pull request to be merged.
