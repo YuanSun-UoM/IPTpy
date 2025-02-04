@@ -2,17 +2,17 @@
 
 ## Preparation
 
-- create a Conda virtual environment
+- Create a Conda virtual environment
 
 ```bash
 conda create --name testingenv python=3.11
 conda activate testingenv
 ```
 
-- install packages
+- Install packages
   - sphinx-book-theme: template
   - recommonmark: for markdown 
-  - sphinx 
+  - sphinx: for docs build 
   - myst-nb: for markdown as well
   - sphinx_design: for rst grid layout
 
@@ -21,7 +21,7 @@ conda install sphinx-book-theme recommonmark sphinx myst-nb
 pip install sphinx_design
 ```
 
-- install IPTpy locally
+- Install IPTpy locally
 
 ```bash
 pip install -e /Users/user/Desktop/YuanSun-UoM/IPTpy
@@ -72,11 +72,13 @@ open /Users/user/Desktop/YuanSun-UoM/IPTpy/docs/_build/index.html
 # GitHub Management
 
 - For GitHub, enable **Discussions** and add **issue templates** in **Settings**.
-- Github Repo description
+- Add GitHub Repo description
 
 ```
 Python-based Input Processing Tools for CESM
 ```
+
+
 
 # [pypi](https://pypi.org)
 
