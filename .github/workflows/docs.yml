@@ -12,9 +12,14 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-     
+
+     - name: Remove existing Conda environment (if exists)
+        run: |
+          conda deactivate || true  # Deactivate any active environment
+          conda env remove --name myenv || true
+    
       - name: Create Conda environment from IPTpy requirements
-        run: conda env create -f requirements.yml
+        run: conda env create -f requirements.yml -n myenv
 
       - name: Update Conda environment with docs requirements
         run: conda env update --name myenv --file docs/requirements.txt 
