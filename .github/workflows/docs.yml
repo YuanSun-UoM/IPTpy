@@ -16,16 +16,18 @@ jobs:
       - name: Set up Conda
         uses: conda-incubator/setup-miniconda@v2
         with:
-          miniconda-version: 'latest'
-          auto-activate-base: false
-          conda-channel-priority: true
-          channels: conda-forge  # Ensure we get packages from conda-forge
+          python-version: "3.9"
+          environment-file: environment.txt 
+          activate-environment: myenv
+          channels: conda-forge,defaults
+          channel-priority: strict
+          auto-update-conda: true
 
       - name: Create Conda environment from IPTpy requirements
         run: conda env create -f ../environment.txt
 
       - name: Update Conda environment with docs requirements
-        run: conda env update --name myenv --file ../docs/environment.txt 
+        run: conda env update --name myenv --file docs/environment.txt 
 
       - name: Activate Conda environment
         run: echo "conda activate myenv" >> $GITHUB_ENV  
