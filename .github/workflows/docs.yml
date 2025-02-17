@@ -21,10 +21,10 @@ jobs:
           conda-channel: conda-forge  
           
       - name: Create Conda environment from IPTpy requirements
-        run: conda env create -f environment.txt
+        run: conda env create -f ./environment.txt
 
       - name: Update Conda environment with docs requirements
-        run: conda env update --name myenv --file docs/environment.txt
+        run: conda env update --name myenv --file ./docs/environment.txt
         
       - name: Activate Conda environment
         run: conda activate myenv 
