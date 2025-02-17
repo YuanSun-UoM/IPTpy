@@ -1,44 +1,49 @@
-# Syntax reference for this file:
-# https://help.github.com/en/articles/workflow-syntax-for-github-actions
-# https://github.com/rkdarst/sphinx-actions-test/blob/master/.github/workflows/sphinx-build.yml
+name: Build and Deploy Docs
 
-name: sphinx
-on: [push, pull_request]
+on:
+  push:
+    branches:
+      - main
 
-# https://gist.github.com/c-bata/ed5e7b7f8015502ee5092a3e77937c99
 jobs:
-  build-and-delpoy:
-    name: Build
+  build:
     runs-on: ubuntu-latest
+
     steps:
-      # https://github.com/marketplace/actions/checkout
-      - uses: actions/checkout@v2
-      # https://github.com/marketplace/actions/setup-python
-      # ^-- This gives info on matrix testing.
-      - name: Install Python
-        uses: actions/setup-python@v1
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Conda
+        uses: conda-incubator/setup-miniconda@v2
         with:
-          python-version: 3.9
-      
-      - name: Install dependencies
+          miniconda-version: 'latest'
+          auto-activate-base: false
+          conda-channel-priority: true
+          channels: conda-forge  # Ensure we get packages from conda-forge
+
+      - name: Create Conda environment from IPTpy requirements
+        run: conda env create -f ../environment.txt
+
+      - name: Update Conda environment with docs requirements
+        run: conda env update --name myenv --file ../docs/environment.txt 
+
+      - name: Activate Conda environment
+        run: echo "conda activate myenv" >> $GITHUB_ENV  
+
+      - name: Install IPTpy from local source
         run: |
-          sudo apt install pandoc
-          python -m pip install --upgrade pip
-          pip install -r ./docs/requirements.txt
-      - name: Build Sphinx docs
+          conda activate myenv
+          pip install -e . 
+
+      - name: Build documentation
         run: |
+          conda activate myenv
           cd docs
           make html
 
-      # https://github.com/peaceiris/actions-gh-pages
-      - name: Deploy
+      - name: Deploy to GitHub Pages
         if: success()
-        uses: peaceiris/actions-gh-pages@v3
+        uses: peaceiris/actions-gh-pages@v4
         with:
-          publish_branch: gh-pages
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: docs/_build/html/
-
-
-# This action probably does everything for you:
-# https://github.com/marketplace/actions/sphinx-build
