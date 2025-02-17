@@ -4,7 +4,7 @@ Encountered an error? No worries. Errors are opportunities for learning and prog
 
 ## Errors During the Input Processing
 
-During input processing, carefully read any errors or warnings for helpful hints. You will become more familiar with IPTpy through practice. Make full use of [Issues](https://github.com/YuanSun-UoM/IPTpy/issues) and [Discussions](https://github.com/YuanSun-UoM/IPTpy/discussions) to find solutions. 
+During input processing, carefully read any errors or warnings for helpful hints. You will become more familiar with IPTpy through practice. Make full use of [Issues](https://github.com/envdes/IPTpy/issues) and [Discussions](https://github.com/envdes/IPTpy/discussions) to find solutions. 
 
 ### Frequent Questions
 

@@ -4,7 +4,7 @@ Make A Contribution
 Introduction
 --------------------------
 
-Thank you for your interest in contributing to IPTpy. There are many ways to get involved, including reporting bugs, suggesting new features, improving documentation, or contributing code. We appreciate all your contributions. If you have any questions, please feel free to reach out via [GitHub Discussions](https://github.com/YuanSun-UoM/IPTpy/discussions). 
+Thank you for your interest in contributing to IPTpy. There are many ways to get involved, including reporting bugs, suggesting new features, improving documentation, or contributing code. We appreciate all your contributions. If you have any questions, please feel free to reach out via [GitHub Discussions](https://github.com/envdes/IPTpy/discussions). 
 
 ## Where to Start
 
@@ -20,7 +20,7 @@ When reporting a bug, provide as much detail as possible, including steps to rep
 
 ## Improving Documentation
 
-We are always looking to enhance our documentation. If you come across anything unclear or confusing, please let us know by opening an [issue](https://github.com/YuanSun-UoM/IPTpy/issues) on GitHub. Your feedback helps us improve.
+We are always looking to enhance our documentation. If you come across anything unclear or confusing, please let us know by opening an [issue](https://github.com/envdes/IPTpy/issues) on GitHub. Your feedback helps us improve.
 
 ## Development Workflow Overview
 

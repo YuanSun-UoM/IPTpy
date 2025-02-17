@@ -66,6 +66,7 @@ IPTpy is a Python-based tool designed to process input data for the `Community E
    Installation <notebooks/installation.md>
    Source Data Download <notebooks/source-data-download.md>
    User API Reference <api.rst>
+   Understand the Process <notebooks/understand.md>
    Usage Examples <examples.rst> 
    Cite IPTpy <notebooks/citation.md>
 
@@ -82,4 +83,4 @@ IPTpy is a Python-based tool designed to process input data for the `Community E
    :caption: Getting Support
 
    Support <notebooks/support.md>
-   GitHub Issues <https://github.com/YuanSun-UoM/IPTpy/issues>   
+   GitHub Issues <https://github.com/envdes/IPTpy/issues>   
