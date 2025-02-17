@@ -16,21 +16,26 @@ jobs:
       - name: Remove existing Conda environment (if exists)
         run: |
           conda init bash
+          source /usr/share/miniconda/etc/profile.d/conda.sh
           conda deactivate || true  # Deactivate any active environment
           conda env remove --name myenv || true  # Remove environment if it exists
 
       - name: Create Conda environment from IPTpy requirements
-        run: conda env create -f requirements.yml -n myenv  
+        run: |
+          source /usr/share/miniconda/etc/profile.d/conda.sh
+          conda env create -f requirements.yml -n myenv  
 
       - name: Install IPTpy from local source
         run: |
-          conda init bash
+          source /usr/share/miniconda/etc/profile.d/conda.sh
           conda activate myenv
           pip install -e . 
           pip install -r docs/requirements.txt
 
       - name: Build documentation
         run: |
+          source /usr/share/miniconda/etc/profile.d/conda.sh
+          conda activate myenv
           cd docs
           make html
 
