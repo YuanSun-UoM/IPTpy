@@ -20,10 +20,7 @@ jobs:
           conda env remove --name myenv || true  # Remove environment if it exists
 
       - name: Create Conda environment from IPTpy requirements
-        run: conda env create -f requirements.yml -n myenv
-
-      - name: Activate Conda environment
-        run: echo "conda activate myenv" >> $GITHUB_ENV  
+        run: conda env create -f requirements.yml -n myenv  
 
       - name: Install IPTpy from local source
         run: |
