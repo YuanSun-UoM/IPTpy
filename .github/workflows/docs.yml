@@ -22,7 +22,10 @@ jobs:
           channels: conda-forge,defaults
           channel-priority: strict
           auto-update-conda: true
-
+      
+      - name: List Files in Directory
+        run: ls -lah
+     
       - name: Create Conda environment from IPTpy requirements
         run: conda env create -f ../environment.txt
 
