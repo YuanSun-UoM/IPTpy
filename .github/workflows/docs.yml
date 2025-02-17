@@ -12,19 +12,6 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-
-      - name: Set up Conda
-        uses: conda-incubator/setup-miniconda@v2
-        with:
-          python-version: "3.9"
-          environment-file: requirements.yml
-          activate-environment: myenv
-          channels: conda-forge,defaults
-          #channel-priority: strict
-          auto-update-conda: true
-      
-      #- name: List Files in Directory
-        #run: ls -lah
      
       - name: Create Conda environment from IPTpy requirements
         run: conda env create -f requirements.yml
