@@ -20,7 +20,7 @@ jobs:
           environment-file: requirements.yml
           activate-environment: myenv
           channels: conda-forge,defaults
-          channel-priority: strict
+          #channel-priority: strict
           auto-update-conda: true
       
       #- name: List Files in Directory
