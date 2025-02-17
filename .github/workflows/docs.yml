@@ -24,7 +24,7 @@ jobs:
           pip install -r docs/requirements.txt 
 
       - name: Install IPTpy from local source
-        run: pip install -e src 
+        run: pip install -e
 
       - name: Build documentation
         run: |
