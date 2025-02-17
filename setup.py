@@ -18,7 +18,7 @@ setup(
     version="0.0.0",
     author="Yuan Sun",
     author_email="sunyuanzju@outlook.com",
-    url="https://github.com/envdes/IPTpy",
+    url="https://github.com/YuanSun-UoM/IPTpy",
     description="ipypy is a Python-based tool designed to process input data for CESM.",
     long_description=long_description,
     long_description_content_type="text/x-rst",
