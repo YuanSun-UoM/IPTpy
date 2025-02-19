@@ -77,6 +77,7 @@ num = \frac{\text{particles} \times M}{f},
 $$
 
 where $num$ is the number of particles (unit: $\left(\frac{\text{particles}}{\text{cm}^2~ \text{s}}\right)\left(\frac{\text{molecules}}{\text{mole}}\right)\left(\frac{\text{g}}{\text{kg}}\right)$), particles is the total mass of the particles. $f$ is the mass per particle, calculated by **Equation 4**:
+
 $$
 f = \rho \times \frac{\pi}{6} \times {diam}^3, 
 \tag{4}
