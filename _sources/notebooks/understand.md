@@ -72,12 +72,14 @@ where  $E_{\text{scaled}}$ is the adjusted emission, $E_{\text{converted}}$ is t
 CESM also requires the number of bc_a4, pom_a4, and SO2, which is calculated using **Equation 3**:
 
 $$
-num = \frac{\text{particles} \times M}{f}, \tag{3}
+num = \frac{\text{particles} \times M}{f}, 
+\tag{3}
 $$
 
-where $num$ is the number of particles (unit: $\left(\frac{\text{particles}}{\text{cm}^2~ \text{s}}\right)\left(\frac{\text{molecules}}{\text{mole}}\right)\left(\frac{\text{g}}{\text{kg}}\right)$), particle is the total mass of the particles. $f$ is the mass per particle, calculated by **Equation 4**:
+where $num$ is the number of particles (unit: $\left(\frac{\text{particles}}{\text{cm}^2~ \text{s}}\right)\left(\frac{\text{molecules}}{\text{mole}}\right)\left(\frac{\text{g}}{\text{kg}}\right)$), particles is the total mass of the particles. $f$ is the mass per particle, calculated by **Equation 4**:
 $$
-f = \rho \times \frac{\pi}{6} \times {diam}^3, \tag{4}
+f = \rho \times \frac{\pi}{6} \times {diam}^3, 
+\tag{4}
 $$
 
 where $\rho$ is the density, $\frac{\pi}{6}$ is a geometric factor that accounts for the volume of a sphere, $diam^3$​ is the cube of the particle's diameter. 
